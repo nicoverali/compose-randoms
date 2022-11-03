@@ -1,0 +1,47 @@
+version: '3'
+services:
+  frontend:
+    container_name: frontend
+    build: ./randoms
+    environment:
+      - PORT=80
+      - REACT_APP_SERVICES=http://localhost:3001,http://localhost:3002,http://localhost:3003,http://localhost:3004,http://localhost:3005
+    ports:
+      - "3000:80"
+  py:
+    container_name: py
+    build: ./py/.venv
+    environment:
+      - PORT=80
+    ports:
+      - "3001:80"
+  py-2:
+    container_name: py-2
+    build: ./py/.venv
+    environment:
+      - PORT=80
+    ports:
+      - "3002:80"
+  ph:
+    container_name: ph
+    build: ./ph
+    environment:
+      - PORT=80
+      - SSL_PORT=443
+    ports:
+      - "3003:80"
+  ph-2:
+    container_name: ph-2
+    build: ./ph
+    environment:
+      - PORT=80
+      - SSL_PORT=443
+    ports:
+      - "3004:80"
+  ex:
+    container_name: ex
+    build: ./ex
+    environment:
+      - PORT=80
+    ports:
+      - "3005:80"

@@ -1,8 +1,11 @@
-// El objetivo es reemplazar esto por microservicios que oculten la fuente de datos.
-const requests = [
-  {"url":"http://localhost:3004","color":"pink"},
-  {"url":"http://localhost:3005","color":"cyan"},
-  {"url":"http://localhost:5000","color":"yellow"},
-]
+function randomColor() {
+  return Math.floor(Math.random() * 16777215).toString(16);
+}
+
+const servicesList = process.env.REACT_APP_SERVICES || "";
+const requests = servicesList.split(",").map((s) => ({
+  url: s,
+  color: "#" + randomColor(),
+}));
 
 export default requests;
